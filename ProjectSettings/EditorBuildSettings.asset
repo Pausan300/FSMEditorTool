@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/MainMenuScene.unity
+    guid: 9fc0d4010bbf28b4594072e72b8655ab
+  - enabled: 1
+    path: Assets/Scenes/PlatformerScene.unity
+    guid: 2fd7646291d19b047a78aea87b4c20fc
+  - enabled: 1
+    path: Assets/Scenes/ShooterScene.unity
+    guid: edd70cb7f9a215c449715060033014ec
+  - enabled: 1
+    path: Assets/Scenes/FarmScene.unity
+    guid: c85f6a563cc5239408ceb61f3ec145d2
+  m_configObjects: {}

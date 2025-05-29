@@ -1,0 +1,13 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[System.Serializable]
+public class Transition 
+{
+	public int m_Id;
+	public Condition m_Condition;
+    //public State m_TargetState;
+	public int m_TargetState;
+	public bool m_Disable;
+}

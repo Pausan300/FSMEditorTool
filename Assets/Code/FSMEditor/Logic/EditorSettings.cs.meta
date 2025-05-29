@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 53d16976a68b86640bd49e4cb9c20695
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - m_CurrentGraph: {instanceID: 0}
+  - m_StateNode: {instanceID: 0}
+  - m_TransitionNode: {instanceID: 0}
+  - m_PointerNode: {instanceID: 0}
+  - m_EditorSkin: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
