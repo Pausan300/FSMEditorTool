@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using System;
-using UnityEditorInternal.VR;
 
 public class FSMEditor : EditorWindow
 {
@@ -19,15 +18,6 @@ public class FSMEditor : EditorWindow
 	Vector2 m_ScrollPos;
 	Vector2 m_ScrollStartPos;
 	GUIStyle m_EditorStyle;
-
-	public enum Inputs
-	{ 
-		ADDSTATE, 
-		ADDTRANSITIONNODE,
-		DELETENODE,
-		CONNECTTRANSITION,
-		ADDPOINTERNODE
-	}
 
 	[MenuItem("FSM Editor/Open Editor")]
 	static void ShowEditor()
@@ -135,39 +125,70 @@ public class FSMEditor : EditorWindow
 	}
 	void DrawSelectedNodeInspector()
     {
-		Rect l_InspectorContainer=new Rect(0, 220, 225, 200);
+		Rect l_InspectorContainer=new Rect(0, 220, 225, 500);
 		GUI.Box(l_InspectorContainer, "", m_Settings.m_EditorSkin.GetStyle("Box"));
 		
 		Rect l_PropertiesContainer=l_InspectorContainer;
 		l_PropertiesContainer.x+=10.0f;
 		l_PropertiesContainer.y+=20.0f;
-		l_PropertiesContainer.width-=20.0f;
+		l_PropertiesContainer.width-=20.0f; 
+
 		GUILayout.BeginArea(l_PropertiesContainer);
 		GUILayout.Space(10);
+		EditorGUILayout.LabelField("NODE INSPECTOR", EditorStyles.boldLabel);
+		EditorGUILayout.LabelField("", EditorStyles.boldLabel);
+
 		bool l_HasProperties=false;
 		SerializedObject l_Object=null;
 		if(m_SelectedNode.m_TransitionReferences.m_Condition!=null) 
+		{
 			l_Object=new SerializedObject(m_SelectedNode.m_TransitionReferences.m_Condition);
-		else if(m_SelectedNode.m_StateReferences.m_OnStateAction!=null)
-			l_Object=new SerializedObject(m_SelectedNode.m_StateReferences.m_OnStateAction);
-		if(l_Object!=null) 
-		{ 
-			SerializedProperty l_ObjectProperties=l_Object.GetIterator();
+			if(DrawNodeProperties(l_Object, "--- Condition Properties ---"))
+				l_HasProperties=true;
+		}
+		else
+		{
+			if(m_SelectedNode.m_StateReferences.m_OnEnterAction!=null) 
+			{
+				l_Object=new SerializedObject(m_SelectedNode.m_StateReferences.m_OnEnterAction);
+				if(DrawNodeProperties(l_Object, "--- OnEnter Properties ---"))
+					l_HasProperties=true;
+			}
+			if(m_SelectedNode.m_StateReferences.m_OnStateAction!=null) 
+			{
+				l_Object=new SerializedObject(m_SelectedNode.m_StateReferences.m_OnStateAction);
+				if(DrawNodeProperties(l_Object, "--- OnState Properties ---"))
+					l_HasProperties=true;
+			}
+			if(m_SelectedNode.m_StateReferences.m_OnExitAction!=null) 
+			{
+				l_Object=new SerializedObject(m_SelectedNode.m_StateReferences.m_OnExitAction);
+				if(DrawNodeProperties(l_Object, "--- OnExit Properties ---"))
+					l_HasProperties=true;
+			}
+		}
+		if(!l_HasProperties)
+			EditorGUILayout.LabelField("No Properties found", EditorStyles.boldLabel);
+
+		GUILayout.EndArea();
+	}
+	bool DrawNodeProperties(SerializedObject Object, string Label) 
+	{
+		bool l_HasProperties=false;
+		if(Object!=null)
+        { 
+			SerializedProperty l_ObjectProperties=Object.GetIterator();
 			while(l_ObjectProperties.NextVisible(true)) 
 			{
 				if(l_ObjectProperties.name=="m_Script")
 					continue;
+				EditorGUILayout.LabelField(Label, EditorStyles.boldLabel);
 				EditorGUILayout.PropertyField(l_ObjectProperties, true);
 				l_HasProperties=true;
-			}
-			l_Object.ApplyModifiedProperties();
+            }
+			Object.ApplyModifiedProperties();
 		}
-		GUILayout.EndArea();
-
-		if(l_HasProperties)
-			GUI.Label(new Rect(l_InspectorContainer.x+10.0f, l_InspectorContainer.y+10.0f, l_InspectorContainer.width, 20.0f), "State Properties:", EditorStyles.boldLabel);
-		else
-			GUI.Label(new Rect(l_InspectorContainer.x+10.0f, l_InspectorContainer.y+10.0f, l_InspectorContainer.width, 20.0f), "No properties found", EditorStyles.boldLabel);
+		return l_HasProperties;
 	}
 	void UserInput(Event Event)
 	{
@@ -208,6 +229,12 @@ public class FSMEditor : EditorWindow
 		for(int i=0; i<m_Settings.m_CurrentGraph.m_Windows.Count; ++i)
 		{
 			Node l_Node=m_Settings.m_CurrentGraph.m_Windows[i];
+			l_Node.m_WindowRect.x+=l_Distance.x;
+			l_Node.m_WindowRect.y+=l_Distance.y;
+		}
+		for(int i=0; i<m_Settings.m_CurrentGraph.m_Pointers.Count; ++i)
+		{
+			PointerNode l_Node=m_Settings.m_CurrentGraph.m_Pointers[i];
 			l_Node.m_WindowRect.x+=l_Distance.x;
 			l_Node.m_WindowRect.y+=l_Distance.y;
 		}
@@ -345,40 +372,6 @@ public class FSMEditor : EditorWindow
 		l_Menu.ShowAsContext();
 		Event.Use();
 	}
-	//void ContextCallback(object Object)
-	//{
-	//	Inputs l_Action = (Inputs)Object;
-	//	switch(l_Action)
-	//	{
-	//		case Inputs.ADDSTATE:
-	//			m_Settings.AddNodeOnGraph(m_Settings.m_StateNode, 200, 100, "State", m_MousePos);
-	//			//m_Settings.AddStateNodeOnGraph(200, 100, "State", m_MousePos);
-	//			break;
-	//		case Inputs.ADDPOINTERNODE:
-	//			m_Settings.AddNodeOnGraph(m_Settings.m_PointerNode, 150, 70, "Pointer", m_MousePos);
-	//			//m_Settings.AddPointerNodeOnGraph(150, 70, "Pointer", m_MousePos);
-	//			break;
-	//		case Inputs.ADDTRANSITIONNODE:
-	//			//AddTransitionNode(m_SelectedNode, m_MousePos);
-	//			AddTransitionNode();
-	//			break;
-	//		case Inputs.DELETENODE:
-	//			if(m_SelectedNode.m_DrawNode is TransitionNode)
-	//			{
-	//				Node l_EnterNode=m_Settings.m_CurrentGraph.GetNodeWithIndex(m_SelectedNode.m_EnterNode);
-	//				//l_EnterNode.m_StateReferences.m_CurrentState.RemoveTransition(m_SelectedNode.m_TransitionReferences.m_TransitionId);
-	//				l_EnterNode.m_StateReferences.RemoveTransition(m_SelectedNode.m_TransitionReferences.m_TransitionId);
-	//			}
-	//			m_Settings.m_CurrentGraph.DeleteNode(m_SelectedNode.m_Id);
-	//			//m_Settings.m_CurrentGraph.DeleteWindows();
-	//			break;
-	//		case Inputs.CONNECTTRANSITION:
-	//			m_TransitionOrigin=m_SelectedNode.m_Id;
-	//			m_MakeTransition=true;
-	//			break;
-	//	}
-	//	EditorUtility.SetDirty(m_Settings);
-	//}
 	void RemoveNode() 
 	{
 		if(m_SelectedNode.m_DrawNode is TransitionNode)

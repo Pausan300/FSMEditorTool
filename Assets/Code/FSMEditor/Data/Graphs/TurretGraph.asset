@@ -17,8 +17,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 11400000, guid: 3576ce69c7857ab42949860aa210572c, type: 2}
     m_WindowRect:
       serializedVersion: 2
-      x: 830.6744
-      y: 256.36044
+      x: 897.26654
+      y: 294.76114
       width: 200
       height: 210
     m_WindowTitle: State
@@ -27,7 +27,7 @@ MonoBehaviour:
     m_AlreadyExists: 0
     m_Assigned: 1
     m_StateReferences:
-      m_OnStateAction: {fileID: 11400000, guid: 1222bcaf299ecae489f916a7aedd5158, type: 2}
+      m_OnStateAction: {fileID: 11400000, guid: 7e8bc11fa65b90542ac9181f25c7013f, type: 2}
       m_OnEnterAction: {fileID: 0}
       m_OnExitAction: {fileID: 0}
       m_Transitions:
@@ -44,8 +44,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 11400000, guid: 6f15c040235e84044b81e533cb6cf467, type: 2}
     m_WindowRect:
       serializedVersion: 2
-      x: 536.0767
-      y: 560.95374
+      x: 602.6756
+      y: 599.35205
       width: 200
       height: 100
     m_WindowTitle: Condition
@@ -67,8 +67,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 11400000, guid: 3576ce69c7857ab42949860aa210572c, type: 2}
     m_WindowRect:
       serializedVersion: 2
-      x: 271.19952
-      y: 240.40005
+      x: 339.8024
+      y: 298.8004
       width: 200
       height: 210
     m_WindowTitle: State
@@ -85,7 +85,7 @@ MonoBehaviour:
         m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
         m_TargetState: 2
         m_Disable: 0
-      m_IsEntryNode: 0
+      m_IsEntryNode: 1
     m_TransitionReferences:
       m_PreviousCondition: {fileID: 0}
       m_Condition: {fileID: 0}
@@ -94,8 +94,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 11400000, guid: 6f15c040235e84044b81e533cb6cf467, type: 2}
     m_WindowRect:
       serializedVersion: 2
-      x: 544.2012
-      y: 68.39998
+      x: 610.79926
+      y: 106.80004
       width: 200
       height: 100
     m_WindowTitle: Condition
@@ -118,8 +118,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 0}
     m_WindowRect:
       serializedVersion: 2
-      x: 986
-      y: 640
+      x: 987.5924
+      y: 648.3992
       width: 150
       height: 70
     m_WindowTitle: Pointer
@@ -141,8 +141,8 @@ MonoBehaviour:
     m_DrawNode: {fileID: 0}
     m_WindowRect:
       serializedVersion: 2
-      x: 1144
-      y: 439
+      x: 1246.5879
+      y: 444.40012
       width: 150
       height: 70
     m_WindowTitle: Pointer
