@@ -157,8 +157,11 @@ public class FSMEditor : EditorWindow
 
 		EditorGUILayout.LabelField("ASSIGNED GRAPH", EditorStyles.whiteBoldLabel);
 		m_Settings.m_CurrentGraph=(Graph)EditorGUILayout.ObjectField(m_Settings.m_CurrentGraph, typeof(Graph), false);
-		GUILayout.Space(20.0f);
+		GUILayout.Space(10.0f);
 
+		if(GUILayout.Button("SAVE GRAPH"))
+			m_Settings.Save();
+		GUILayout.Space(20.0f);
 		if(GUILayout.Button("Reset View"))
 			ResetScroll();
 
@@ -324,11 +327,11 @@ public class FSMEditor : EditorWindow
 		if(m_ClickedOnWindow && (m_SelectedNode is StateNode || m_SelectedNode is PointerNode) && m_SelectedNode.m_Id!=m_TransitionOrigin)
 		{
 			TransitionNode l_TransitionNode=m_Settings.m_CurrentGraph.GetTransitionNodeWithIndex(m_TransitionOrigin);
-			l_TransitionNode.m_TargetNode=m_SelectedNode.m_Id;
+			l_TransitionNode.m_TargetNodeId=m_SelectedNode.m_Id;
 
-			StateNode l_EnterNode=m_Settings.m_CurrentGraph.GetStateNodeWithIndex(l_TransitionNode.m_EnterNode);
-			Transition l_Transition=l_EnterNode.GetTransition(l_TransitionNode.m_TransitionId);
-			l_Transition.m_TargetState=m_SelectedNode.m_Id;
+			//StateNode l_EnterNode=m_Settings.m_CurrentGraph.GetStateNodeWithIndex(l_TransitionNode.m_EnterNode);
+			//Transition l_Transition=l_EnterNode.GetTransition(l_TransitionNode.m_TransitionId);
+			//l_Transition.m_TargetState=m_SelectedNode.m_Id;
 		}
 	}
 	void MoveWindows(Event Event)
@@ -415,8 +418,8 @@ public class FSMEditor : EditorWindow
 	{
 		if(m_SelectedNode is TransitionNode _TransitionNode)
 		{
-			StateNode l_EnterNode=m_Settings.m_CurrentGraph.GetStateNodeWithIndex(_TransitionNode.m_EnterNode);
-			l_EnterNode.RemoveTransition(_TransitionNode.m_TransitionId);
+			StateNode l_EnterNode=m_Settings.m_CurrentGraph.GetStateNodeWithIndex(_TransitionNode.m_EnterNodeId);
+			l_EnterNode.RemoveTransition(_TransitionNode.m_Id);
 			m_Settings.m_CurrentGraph.DeleteTransitionNode(_TransitionNode.m_Id);
 		}
 		else
@@ -427,14 +430,17 @@ public class FSMEditor : EditorWindow
 	void AddTransitionNode()
 	{
 		TransitionNode l_TransitionNode=AddTransitionNodeOnGraph("Condition", m_MousePos);
-		l_TransitionNode.m_EnterNode=m_SelectedNode.m_Id;
-		l_TransitionNode.m_TargetNode=-1;
+		l_TransitionNode.m_EnterNodeId=m_SelectedNode.m_Id;
+		//l_TransitionNode.m_TargetNode=-1;
 
 		if(m_SelectedNode is StateNode _StateNode) 
 		{
-			Transition l_Transition=_StateNode.AddTransition();
-			l_TransitionNode.m_TransitionId=_StateNode.m_Transitions.Count-1;
-			l_Transition.m_Id=_StateNode.m_Transitions.Count-1;
+			//Transition l_Transition=_StateNode.AddTransition();
+			//l_TransitionNode.m_TransitionId=_StateNode.m_Transitions.Count-1;
+			//l_Transition.m_Id=_StateNode.m_Transitions.Count-1;
+
+			Debug.Log(l_TransitionNode.m_Id);
+			_StateNode.AddTransition(l_TransitionNode.m_Id);
 		}
 		m_Settings.Save();
 	}

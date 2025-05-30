@@ -70,19 +70,19 @@ public class Graph : ScriptableObject
 		}
 		return false;
 	}
-	public bool DoesTransitionAlreadyExist(TransitionNode Node)
-	{
-		StateNode l_EnterNode=GetStateNodeWithIndex(Node.m_EnterNode);
-		if(l_EnterNode==null)
-			return false;
-		for(int i=0; i<l_EnterNode.m_Transitions.Count; ++i)
-		{
-			Transition l_Transition=l_EnterNode.m_Transitions[i]; 
-			if(l_Transition.m_Condition==Node.m_PreviousCondition && Node.m_TransitionId!=l_Transition.m_Id)
-				return true;
-		}
-		return false;
-	}
+	//public bool DoesTransitionAlreadyExist(TransitionNode Node)
+	//{
+	//	StateNode l_EnterNode=GetStateNodeWithIndex(Node.m_EnterNode);
+	//	if(l_EnterNode==null)
+	//		return false;
+	//	for(int i=0; i<l_EnterNode.m_Transitions.Count; ++i)
+	//	{
+	//		Transition l_Transition=l_EnterNode.m_Transitions[i]; 
+	//		if(l_Transition.m_Condition==Node.m_PreviousCondition && Node.m_TransitionId!=l_Transition.m_Id)
+	//			return true;
+	//	}
+	//	return false;
+	//}
 	public void SetEntryNode(int Id) 
 	{
 		if(GetStateNodeWithIndex(m_EntryNodeId)!=null)

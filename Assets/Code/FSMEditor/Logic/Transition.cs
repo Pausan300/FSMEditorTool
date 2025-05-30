@@ -8,5 +8,4 @@ public class Transition
 	public int m_Id;
 	public Condition m_Condition;
 	public int m_TargetState;
-	public bool m_Disable;
 }

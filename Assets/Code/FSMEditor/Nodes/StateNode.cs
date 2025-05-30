@@ -9,47 +9,33 @@ public class StateNode : Node
 	public StateAction m_OnStateAction;
 	public StateAction m_OnEnterAction;
 	public StateAction m_OnExitAction;
-	public List<Transition> m_Transitions=new List<Transition>();
+
+	public List<int> m_Transitions=new List<int>();
+
 	public bool m_IsEntryNode;
 	
+
 	public void CheckTransitions(StateManager States)
 	{
 		for(int i=0; i<m_Transitions.Count; ++i)
 		{
-			if(m_Transitions[i].m_Disable)
-				continue;
-
-			if(m_Transitions[i].m_Condition.CheckCondition(States, States.GetBlackboard()))
+			TransitionNode l_Transition=States.m_AssignedGraph.GetTransitionNodeWithIndex(m_Transitions[i]);
+			if(l_Transition.m_TargetNodeId!=-1 && l_Transition.m_Condition.CheckCondition(States, States.GetBlackboard()))
 			{
-				if(m_Transitions[i].m_TargetState!=-1)
-					States.SetCurrentState(m_Transitions[i].m_TargetState);
+				States.SetCurrentState(l_Transition.m_TargetNodeId);
 				return;
 			}
-			return;
 		}
 	}
-	public Transition AddTransition()
+	public void AddTransition(int Id)
 	{
-		Transition l_Transition=new Transition();
-		m_Transitions.Add(l_Transition);
-		return l_Transition;
+		m_Transitions.Add(Id);
 	}
-
-	public Transition GetTransition(int Id)
+	public void RemoveTransition(int Id) 
 	{
 		for(int i=0; i<m_Transitions.Count; ++i)
 		{
-			if(m_Transitions[i].m_Id==Id)
-				return m_Transitions[i];
-		}
-
-		return null;
-	}
-	public void RemoveTransition(int Id)
-	{
-		for(int i=0; i<m_Transitions.Count; ++i)
-		{
-			if(m_Transitions[i].m_Id==Id)
+			if(m_Transitions[i]==Id)
 				m_Transitions.Remove(m_Transitions[i]);
 		}
 	}
