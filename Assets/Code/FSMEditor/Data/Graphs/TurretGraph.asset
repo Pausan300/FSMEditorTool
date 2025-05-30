@@ -13,151 +13,112 @@ MonoBehaviour:
   m_Name: TurretGraph
   m_EditorClassIdentifier: 
   m_Windows:
-  - m_Id: 2
-    m_DrawNode: {fileID: 11400000, guid: 3576ce69c7857ab42949860aa210572c, type: 2}
+  - m_Id: 0
     m_WindowRect:
       serializedVersion: 2
-      x: 897.26654
-      y: 294.76114
+      x: 404.40088
+      y: 281.2009
       width: 200
-      height: 210
-    m_WindowTitle: State
-    m_EnterNode: 0
-    m_TargetNode: 0
+      height: 190
+    m_WindowTitle: LOOKOUT
     m_AlreadyExists: 0
     m_Assigned: 1
-    m_StateReferences:
-      m_OnStateAction: {fileID: 11400000, guid: 7e8bc11fa65b90542ac9181f25c7013f, type: 2}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions:
-      - m_Id: 0
-        m_Condition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
-        m_TargetState: 5
-        m_Disable: 0
-      m_IsEntryNode: 0
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 0}
-      m_Condition: {fileID: 0}
-      m_TransitionId: 0
-  - m_Id: 3
-    m_DrawNode: {fileID: 11400000, guid: 6f15c040235e84044b81e533cb6cf467, type: 2}
-    m_WindowRect:
-      serializedVersion: 2
-      x: 602.6756
-      y: 599.35205
-      width: 200
-      height: 100
-    m_WindowTitle: Condition
-    m_EnterNode: 2
-    m_TargetNode: 5
-    m_AlreadyExists: 0
-    m_Assigned: 1
-    m_StateReferences:
-      m_OnStateAction: {fileID: 0}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions: []
-      m_IsEntryNode: 0
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
-      m_Condition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
-      m_TransitionId: 0
-  - m_Id: 5
-    m_DrawNode: {fileID: 11400000, guid: 3576ce69c7857ab42949860aa210572c, type: 2}
-    m_WindowRect:
-      serializedVersion: 2
-      x: 339.8024
-      y: 298.8004
-      width: 200
-      height: 210
-    m_WindowTitle: State
-    m_EnterNode: 0
-    m_TargetNode: 0
-    m_AlreadyExists: 0
-    m_Assigned: 1
-    m_StateReferences:
-      m_OnStateAction: {fileID: 11400000, guid: 13b4457e8d474894f97311b77554680f, type: 2}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions:
-      - m_Id: 0
-        m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
-        m_TargetState: 2
-        m_Disable: 0
-      m_IsEntryNode: 1
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 0}
-      m_Condition: {fileID: 0}
-      m_TransitionId: -1
-  - m_Id: 6
-    m_DrawNode: {fileID: 11400000, guid: 6f15c040235e84044b81e533cb6cf467, type: 2}
-    m_WindowRect:
-      serializedVersion: 2
-      x: 610.79926
-      y: 106.80004
-      width: 200
-      height: 100
-    m_WindowTitle: Condition
-    m_EnterNode: 5
-    m_TargetNode: 2
-    m_AlreadyExists: 0
-    m_Assigned: 1
-    m_StateReferences:
-      m_OnStateAction: {fileID: 0}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions: []
-      m_IsEntryNode: 0
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+    m_OnStateAction: {fileID: 11400000, guid: 13b4457e8d474894f97311b77554680f, type: 2}
+    m_OnEnterAction: {fileID: 0}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions:
+    - m_Id: 0
       m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
-      m_TransitionId: 0
-  m_Pointers:
+      m_TargetState: 2
+      m_Disable: 0
+    m_IsEntryNode: 1
+  - m_Id: 2
+    m_WindowRect:
+      serializedVersion: 2
+      x: 950.4006
+      y: 277.20093
+      width: 200
+      height: 190
+    m_WindowTitle: SHOOT
+    m_AlreadyExists: 0
+    m_Assigned: 1
+    m_OnStateAction: {fileID: 11400000, guid: 1222bcaf299ecae489f916a7aedd5158, type: 2}
+    m_OnEnterAction: {fileID: 0}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions:
+    - m_Id: 0
+      m_Condition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
+      m_TargetState: 0
+      m_Disable: 0
+    - m_Id: 1
+      m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+      m_TargetState: -1
+      m_Disable: 0
+    - m_Id: 2
+      m_Condition: {fileID: 0}
+      m_TargetState: 0
+      m_Disable: 0
+    m_IsEntryNode: 0
+  m_TransitionNodes:
+  - m_Id: 1
+    m_WindowRect:
+      serializedVersion: 2
+      x: 688.40186
+      y: 157.20332
+      width: 200
+      height: 70
+    m_WindowTitle: Condition
+    m_AlreadyExists: 0
+    m_Assigned: 1
+    m_EnterNode: 0
+    m_TargetNode: 2
+    m_PreviousCondition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+    m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+    m_TransitionId: 0
+  - m_Id: 3
+    m_WindowRect:
+      serializedVersion: 2
+      x: 668.8027
+      y: 560.19324
+      width: 200
+      height: 70
+    m_WindowTitle: Condition
+    m_AlreadyExists: 0
+    m_Assigned: 1
+    m_EnterNode: 2
+    m_TargetNode: 0
+    m_PreviousCondition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
+    m_Condition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
+    m_TransitionId: 0
   - m_Id: 4
-    m_DrawNode: {fileID: 0}
     m_WindowRect:
       serializedVersion: 2
-      x: 987.5924
-      y: 648.3992
-      width: 150
+      x: 1208.4026
+      y: 129.20111
+      width: 200
       height: 70
-    m_WindowTitle: Pointer
-    m_EnterNode: 0
-    m_TargetNode: 0
+    m_WindowTitle: Condition
     m_AlreadyExists: 0
-    m_Assigned: 0
-    m_StateReferences:
-      m_OnStateAction: {fileID: 0}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions: []
-      m_IsEntryNode: 0
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 0}
-      m_Condition: {fileID: 0}
-      m_TransitionId: 0
-  - m_Id: 7
-    m_DrawNode: {fileID: 0}
+    m_Assigned: 1
+    m_EnterNode: 2
+    m_TargetNode: -1
+    m_PreviousCondition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+    m_Condition: {fileID: 11400000, guid: 1eae8721709664143b3b2a25f222b0d3, type: 2}
+    m_TransitionId: 1
+  - m_Id: 10
     m_WindowRect:
       serializedVersion: 2
-      x: 1246.5879
-      y: 444.40012
-      width: 150
+      x: 1195
+      y: 572
+      width: 200
       height: 70
-    m_WindowTitle: Pointer
-    m_EnterNode: 0
-    m_TargetNode: 0
+    m_WindowTitle: Condition
     m_AlreadyExists: 0
     m_Assigned: 0
-    m_StateReferences:
-      m_OnStateAction: {fileID: 0}
-      m_OnEnterAction: {fileID: 0}
-      m_OnExitAction: {fileID: 0}
-      m_Transitions: []
-      m_IsEntryNode: 0
-    m_TransitionReferences:
-      m_PreviousCondition: {fileID: 0}
-      m_Condition: {fileID: 0}
-      m_TransitionId: 0
-  m_Id: 8
+    m_EnterNode: 2
+    m_TargetNode: -1
+    m_PreviousCondition: {fileID: 0}
+    m_Condition: {fileID: 0}
+    m_TransitionId: 2
+  m_PointerNodes: []
+  m_Id: 11

@@ -5,14 +5,11 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
 	public Graph m_AssignedGraph;
-	//public State m_CurrentState;
-	Node m_CurrentState;
-	public Transform m_Transform;
+	StateNode m_CurrentState;
 	Blackboard m_Blackboard;
 
 	private void Start()
 	{
-		m_Transform=this.transform;
 		m_Blackboard=transform.GetComponent<Blackboard>();
 		if(m_AssignedGraph!=null) 
 		{
@@ -21,12 +18,10 @@ public class StateManager : MonoBehaviour
 	}
 	private void Update()
 	{
-		//if(m_CurrentState!=null)
-		//	m_CurrentState.OnState(this);
 		if(m_AssignedGraph!=null) 
 		{
-			m_CurrentState.m_StateReferences.m_OnStateAction.Execute(this, m_Blackboard);
-			m_CurrentState.m_StateReferences.CheckTransitions(this);
+			m_CurrentState.m_OnStateAction.Execute(this, m_Blackboard);
+			m_CurrentState.CheckTransitions(this);
 		}
 	}
 	public Blackboard GetBlackboard()
@@ -40,10 +35,10 @@ public class StateManager : MonoBehaviour
 	}
 	public void SetCurrentState(int Index) 
 	{
-		if(m_CurrentState.m_StateReferences.m_OnExitAction!=null)
-			m_CurrentState.m_StateReferences.m_OnExitAction.Execute(this, m_Blackboard);
-		m_CurrentState=m_AssignedGraph.GetNodeWithIndex(Index);
-		if(m_CurrentState.m_StateReferences.m_OnEnterAction!=null)
-			m_CurrentState.m_StateReferences.m_OnEnterAction.Execute(this, m_Blackboard);
+		if(m_CurrentState.m_OnExitAction!=null)
+			m_CurrentState.m_OnExitAction.Execute(this, m_Blackboard);
+		m_CurrentState=m_AssignedGraph.GetStateNodeWithIndex(Index);
+		if(m_CurrentState.m_OnEnterAction!=null)
+			m_CurrentState.m_OnEnterAction.Execute(this, m_Blackboard);
 	}
 }

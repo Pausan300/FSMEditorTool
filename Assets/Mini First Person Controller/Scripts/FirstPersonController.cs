@@ -33,14 +33,14 @@ public class FirstPersonController : MonoBehaviour, ITakeDamage
     public bool IsRunning { get; private set; }
     public KeyCode runningKey = KeyCode.LeftShift;
 
-    Rigidbody rigidbody;
+    Rigidbody _rigidbody;
     /// <summary> Functions to override movement speed. Will use the last added override. </summary>
     public List<System.Func<float>> speedOverrides = new List<System.Func<float>>();
 
     void Awake()
     {
         // Get the rigidbody on this.
-        rigidbody = GetComponent<Rigidbody>();
+        _rigidbody = GetComponent<Rigidbody>();
         m_Animation=GetComponent<Animation>();
         m_HealthBar.maxValue=m_MaxHealth;
         m_HealthBar.value=m_MaxHealth;
@@ -98,7 +98,7 @@ public class FirstPersonController : MonoBehaviour, ITakeDamage
         Vector2 targetVelocity =new Vector2( Input.GetAxis("Horizontal") * targetMovingSpeed, Input.GetAxis("Vertical") * targetMovingSpeed);
 
         // Apply movement.
-        rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, rigidbody.velocity.y, targetVelocity.y);
+        _rigidbody.velocity = transform.rotation * new Vector3(targetVelocity.x, _rigidbody.velocity.y, targetVelocity.y);
     }
 
     public void TakeDamage(float Damage)

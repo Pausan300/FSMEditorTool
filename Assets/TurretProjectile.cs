@@ -33,6 +33,7 @@ public class TurretProjectile : MonoBehaviour
             if(other.transform.TryGetComponent(out ITakeDamage Player))
             {
                 Player.TakeDamage(m_Damage);
+                Destroy(gameObject);
             }
         }
     }

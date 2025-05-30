@@ -13,3 +13,4 @@ MonoBehaviour:
   m_Name: TurretLookOut
   m_EditorClassIdentifier: 
   m_RotationSpeed: 90
+  m_RotationSeed: 2

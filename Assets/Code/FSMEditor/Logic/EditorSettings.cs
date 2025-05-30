@@ -7,79 +7,25 @@ using UnityEngine;
 public class EditorSettings : ScriptableObject
 {
 	public Graph m_CurrentGraph;
-    public StateNode m_StateNode;
-	public TransitionNode m_TransitionNode;
-	//public PointerNode m_PointerNode;
 
-	[Header("Style Settings")]
-	public GUISkin m_EditorSkin;
+	[Header("Editor Window")]
+	public Vector2 m_MinEditorSize;
+	public Vector2 m_MaxEditorSize;
+
+	[Header("Editor Rects")]
+	public Rect m_EditorWindowRect;
+	public Rect m_GraphConfigRect;
+	public Rect m_NodeInspectorRect;
+
+	[Header("Nodes")]
+	public float m_StateNodeWidth;
+	public float m_StateNodeHeight;
+	public float m_TransitionNodeWidth;
+	public float m_TransitionNodeHeight;
 	public float m_NodeLabelHeight;
 
-	//public bool m_MakeTransition;
-	
-	//public Node AddNodeOnGraph(DrawNode Type, float Width, float Height, string Title, Vector3 Pos)
-	//{
-	//	Node l_Node=new Node();
-	//	l_Node.m_DrawNode=Type;
-	//	l_Node.m_WindowRect.width=Width;
-	//	l_Node.m_WindowRect.height=Height;
-	//	l_Node.m_WindowTitle=Title;
-	//	l_Node.m_WindowRect.x=Pos.x;
-	//	l_Node.m_WindowRect.y=Pos.y;
-	//	//l_Node.m_Id=m_CurrentGraph.m_Windows.Count;
-	//	l_Node.m_Id=m_CurrentGraph.m_Id;
-	//	m_CurrentGraph.m_Id++;
-	//	m_CurrentGraph.m_Windows.Add(l_Node);
-	//	l_Node.m_TransitionReferences=new TransitionNodeReferences();
-	//	l_Node.m_StateReferences=new StateNodeReferences();
-	//	return l_Node;
-	//}
-
-	//public Node AddStateNodeOnGraph(float Width, float Height, string Title, Vector3 Pos)
-	//{
-	//	Node l_Node=new Node();
-	//	l_Node.m_DrawNode=m_StateNode;
-	//	l_Node.m_WindowRect.width=Width;
-	//	l_Node.m_WindowRect.height=Height;
-	//	l_Node.m_WindowTitle=Title;
-	//	l_Node.m_WindowRect.x=Pos.x;
-	//	l_Node.m_WindowRect.y=Pos.y;
-	//	l_Node.m_Id=m_CurrentGraph.m_Windows.Count;
-	//	m_CurrentGraph.m_Windows.Add(l_Node);
-	//	l_Node.m_TransitionReferences=new TransitionNodeReferences();
-	//	l_Node.m_StateReferences=new StateNodeReferences();
-	//	return l_Node;
-	//}
-	//public Node AddTransitionNodeOnGraph(float Width, float Height, string Title, Vector3 Pos)
-	//{
-	//	Node l_Node=new Node();
-	//	l_Node.m_DrawNode=m_TransitionNode;
-	//	l_Node.m_WindowRect.width=Width;
-	//	l_Node.m_WindowRect.height=Height;
-	//	l_Node.m_WindowTitle=Title;
-	//	l_Node.m_WindowRect.x=Pos.x;
-	//	l_Node.m_WindowRect.y=Pos.y;
-	//	l_Node.m_Id=m_CurrentGraph.m_Windows.Count;
-	//	m_CurrentGraph.m_Windows.Add(l_Node);
-	//	l_Node.m_TransitionReferences=new TransitionNodeReferences();
-	//	l_Node.m_StateReferences=new StateNodeReferences();
-	//	return l_Node;
-	//}
-	//public Node AddPointerNodeOnGraph(float Width, float Height, string Title, Vector3 Pos)
-	//{
-	//	Node l_Node=new Node();
-	//	l_Node.m_DrawNode=m_PointerNode;
-	//	l_Node.m_WindowRect.width=Width;
-	//	l_Node.m_WindowRect.height=Height;
-	//	l_Node.m_WindowTitle=Title;
-	//	l_Node.m_WindowRect.x=Pos.x;
-	//	l_Node.m_WindowRect.y=Pos.y;
-	//	l_Node.m_Id=m_CurrentGraph.m_Windows.Count;
-	//	m_CurrentGraph.m_Windows.Add(l_Node);
-	//	l_Node.m_TransitionReferences=new TransitionNodeReferences();
-	//	l_Node.m_StateReferences=new StateNodeReferences();
-	//	return l_Node;
-	//}
+	[Header("Style Skin")]
+	public GUISkin m_EditorSkin;
 
 	public void Save() 
 	{
@@ -98,5 +44,9 @@ public class EditorSettings : ScriptableObject
 	public GUIStyle GetRedTextStyle() 
 	{
 		return m_EditorSkin.GetStyle("Label");
+	}
+	public GUIStyle GetCenteredTextStyle() 
+	{
+		return m_EditorSkin.GetStyle("CenteredText");
 	}
 }

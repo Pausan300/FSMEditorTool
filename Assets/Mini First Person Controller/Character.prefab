@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4005970830214295669}
   m_Layer: 0
   m_Name: Character
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,11 +118,13 @@ MonoBehaviour:
   m_ShootAnim: {fileID: 7400000, guid: 72e38ecedf0564247ac262a751f33b05, type: 2}
   m_ReloadAnim: {fileID: 7400000, guid: db3867583864c3c41884ef0e61a82fe9, type: 2}
   m_HealthBar: {fileID: 0}
+  m_BulletCounterUI: {fileID: 0}
   m_PauseMenu: {fileID: 0}
   speed: 7.5
   runSpeed: 15
   m_MaxHealth: 100
   m_FireRate: 0.3
+  m_MaxBullets: 6
   m_GunDamage: 10
   m_CameraLayerMask:
     serializedVersion: 2
@@ -447,7 +449,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2014430605032181424, guid: ed884912bb2d8f34bb20bbf879b4e87d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: -13.855744
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2014430605032181424, guid: ed884912bb2d8f34bb20bbf879b4e87d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
@@ -455,7 +457,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2014430605032181424, guid: ed884912bb2d8f34bb20bbf879b4e87d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: -12.463
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
