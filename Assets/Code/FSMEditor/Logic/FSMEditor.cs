@@ -116,7 +116,7 @@ public class FSMEditor : EditorWindow
 			for(int i=0; i<m_Settings.m_CurrentGraph.m_TransitionNodes.Count; ++i)
 			{
 				TransitionNode l_Node=m_Settings.m_CurrentGraph.m_TransitionNodes[i];
-				Rect l_WindowRect=new Rect(l_Node.m_WindowRect.x, l_Node.m_WindowRect.y, m_Settings.m_TransitionNodeWidth, m_Settings.m_TransitionNodeHeight);
+				Rect l_WindowRect=new Rect(l_Node.m_WindowRect.x, l_Node.m_WindowRect.y, m_Settings.m_TransitionNodeWidth, m_Settings.m_TransitionNodeHeight+l_Node.m_ExtraWindowHeight);
 				l_Node.m_WindowRect=GUI.Window(l_WindowIndex, l_WindowRect, id => DrawTransitionNodeWindow(id, l_Node), "", l_NodeWindowStyle);
 				l_Node.DrawLabel();
 				l_Node.DrawLine();
@@ -222,17 +222,23 @@ public class FSMEditor : EditorWindow
 			SerializedObject l_Object=null;
 			if(m_SelectedNode is TransitionNode _TransitionNode)
 			{
-				if(_TransitionNode.m_Condition!=null) 
+				if(_TransitionNode.m_Conditions.Count>0)
 				{
-					l_Object=new SerializedObject(_TransitionNode.m_Condition);
-					if(DrawNodeProperties(l_Object, "--- Condition Properties ---"))
-						l_HasProperties=true;
+					for(int i=0; i<_TransitionNode.m_Conditions.Count; ++i) 
+					{
+						if(_TransitionNode.m_Conditions[i]!=null) 
+						{
+							l_Object=new SerializedObject(_TransitionNode.m_Conditions[i]);
+							if(DrawNodeProperties(l_Object, "--- Condition "+(i+1)+" Properties ---"))
+								l_HasProperties=true;
+						}
+					}
 				}
 			}
 			else if(m_SelectedNode is StateNode _StateNode)
 			{
 				EditorGUILayout.LabelField("State Name", EditorStyles.boldLabel);
-				_StateNode.m_WindowTitle=EditorGUILayout.TextField(_StateNode.m_WindowTitle);
+				_StateNode.m_StateName=EditorGUILayout.TextField(_StateNode.m_StateName);
 				GUILayout.Space(10.0f);
 				if(_StateNode.m_OnEnterAction!=null) 
 				{
@@ -393,7 +399,7 @@ public class FSMEditor : EditorWindow
 		GenericMenu l_Menu=new GenericMenu();
 		if(m_SelectedNode is StateNode _StateNode)
 		{
-			if(_StateNode.m_OnStateAction!=null && !m_SelectedNode.m_AlreadyExists)
+			if(_StateNode.m_OnStateAction!=null)
 			{
 				l_Menu.AddItem(new GUIContent("Add Transition"), false, AddTransitionNode);
 				if(!_StateNode.m_IsEntryNode) 
@@ -407,7 +413,7 @@ public class FSMEditor : EditorWindow
 		} 
 		else if(m_SelectedNode is TransitionNode)
 		{
-			if(m_SelectedNode.m_AlreadyExists || !m_SelectedNode.m_Assigned)
+			if(!m_SelectedNode.m_Assigned)
 				l_Menu.AddDisabledItem(new GUIContent("Connect Transition"));
 			else
 				l_Menu.AddItem(new GUIContent("Connect Transition"), false, SetMakeTransition);
@@ -432,7 +438,7 @@ public class FSMEditor : EditorWindow
 
 	void AddTransitionNode()
 	{
-		TransitionNode l_TransitionNode=AddTransitionNodeOnGraph("Condition", m_MousePos);
+		TransitionNode l_TransitionNode=AddTransitionNodeOnGraph(m_MousePos);
 		l_TransitionNode.m_EnterNodeId=m_SelectedNode.m_Id;
 
 		if(m_SelectedNode is StateNode _StateNode)
@@ -444,10 +450,10 @@ public class FSMEditor : EditorWindow
 		StateNode l_StateNode=AddStateNodeOnGraph("State", m_MousePos);
 		m_Settings.Save();
 	}
-	StateNode AddStateNodeOnGraph(string Title, Vector3 Pos)
+	StateNode AddStateNodeOnGraph(string Name, Vector3 Pos)
 	{
 		StateNode l_Node=new StateNode();
-		l_Node.m_WindowTitle=Title;
+		l_Node.m_StateName=Name;
 		l_Node.m_WindowRect.x=Pos.x;
 		l_Node.m_WindowRect.y=Pos.y;
 		l_Node.m_Id=m_Settings.m_CurrentGraph.m_Id; 
@@ -462,10 +468,9 @@ public class FSMEditor : EditorWindow
 			m_Settings.m_CurrentGraph.m_Windows.Add(l_Node);
 		return l_Node;
 	}
-	TransitionNode AddTransitionNodeOnGraph(string Title, Vector3 Pos)
+	TransitionNode AddTransitionNodeOnGraph(Vector3 Pos)
 	{
 		TransitionNode l_Node=new TransitionNode();
-		l_Node.m_WindowTitle=Title;
 		l_Node.m_WindowRect.x=Pos.x;
 		l_Node.m_WindowRect.y=Pos.y;
 		l_Node.m_Id=m_Settings.m_CurrentGraph.m_Id;

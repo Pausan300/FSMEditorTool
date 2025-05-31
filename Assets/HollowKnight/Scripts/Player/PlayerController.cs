@@ -80,12 +80,6 @@ public class PlayerController : MonoBehaviour
             sprintControl();
             attackControl();
         }
-
-        if(Input.GetKeyDown(KeyCode.P)) 
-        {
-            m_PauseMenu.SetNormalPause();
-            m_PauseMenu.OpenMenu();
-        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -517,7 +511,7 @@ public class PlayerController : MonoBehaviour
             {
                 ITakeDamage enemyController = obj.GetComponent<ITakeDamage>();
                 if (enemyController != null)
-                    enemyController.TakeDamage(1);
+                    enemyController.TakeDamage(10.0f);
             }
             else if (layerName == "Projectile")
             {

@@ -1,0 +1,163 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1367e334920a46459cb02b0e2275ac8, type: 3}
+  m_Name: FarmerGraph
+  m_EditorClassIdentifier: 
+  m_Windows:
+  - m_Id: 0
+    m_WindowRect:
+      serializedVersion: 2
+      x: 411.601
+      y: 127.199135
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: WATCH SHEEPS
+    m_OnStateAction: {fileID: 11400000, guid: b3b522c69d5f4044aa62ad4d92d3d210, type: 2}
+    m_OnEnterAction: {fileID: 0}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 01000000
+    m_IsEntryNode: 1
+    m_IsCurrentlyPlaying: 0
+  - m_Id: 2
+    m_WindowRect:
+      serializedVersion: 2
+      x: 1002.5971
+      y: 104.19913
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: REACH SHEEP
+    m_OnStateAction: {fileID: 11400000, guid: 17183fb4560052942bf20ee919f91a4a, type: 2}
+    m_OnEnterAction: {fileID: 0}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 03000000
+    m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
+  - m_Id: 4
+    m_WindowRect:
+      serializedVersion: 2
+      x: 977.5971
+      y: 647.20245
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: SHEAR SHEEP
+    m_OnStateAction: {fileID: 11400000, guid: 2829f5c1d5f96c344af79a7a87d4f28c, type: 2}
+    m_OnEnterAction: {fileID: 11400000, guid: c3b3fffa6ad46644b92a6b494c4d06c8, type: 2}
+    m_OnExitAction: {fileID: 11400000, guid: e61579b18ef51464e8eadbfc717e10ca, type: 2}
+    m_Transitions: 0600000008000000
+    m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
+  - m_Id: 7
+    m_WindowRect:
+      serializedVersion: 2
+      x: 408.00067
+      y: 608.9988
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: REACH WATCH POINT
+    m_OnStateAction: {fileID: 11400000, guid: 342b293758fc0d744b788276d99c25d7, type: 2}
+    m_OnEnterAction: {fileID: 0}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 0a0000000b000000
+    m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
+  m_TransitionNodes:
+  - m_Id: 1
+    m_WindowRect:
+      serializedVersion: 2
+      x: 689.5971
+      y: 128.19934
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 0
+    m_TargetNodeId: 2
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+  - m_Id: 3
+    m_WindowRect:
+      serializedVersion: 2
+      x: 1252.596
+      y: 428.20117
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 2
+    m_TargetNodeId: 4
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 00028f26fdc7bf64da0169b93573bfc1, type: 2}
+    m_Condition: {fileID: 11400000, guid: 00028f26fdc7bf64da0169b93573bfc1, type: 2}
+  - m_Id: 6
+    m_WindowRect:
+      serializedVersion: 2
+      x: 986.79706
+      y: 424.60016
+      width: 200
+      height: 122.5
+    m_Assigned: 1
+    m_EnterNodeId: 4
+    m_TargetNodeId: 2
+    m_ExtraWindowHeight: 22.5
+    m_Conditions:
+    - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+    - {fileID: 11400000, guid: bee60a090f8ce74468733578712edf54, type: 2}
+    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+  - m_Id: 8
+    m_WindowRect:
+      serializedVersion: 2
+      x: 683.99835
+      y: 664.9988
+      width: 200
+      height: 122.5
+    m_Assigned: 1
+    m_EnterNodeId: 4
+    m_TargetNodeId: 7
+    m_ExtraWindowHeight: 22.5
+    m_Conditions:
+    - {fileID: 11400000, guid: 6a3231fb98ed15f4e8e165a09ed207d5, type: 2}
+    - {fileID: 11400000, guid: bee60a090f8ce74468733578712edf54, type: 2}
+    m_Condition: {fileID: 11400000, guid: 6a3231fb98ed15f4e8e165a09ed207d5, type: 2}
+  - m_Id: 10
+    m_WindowRect:
+      serializedVersion: 2
+      x: 412.00067
+      y: 407.00034
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 7
+    m_TargetNodeId: 0
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: f788867cc03f56a499d3fc32626203f4, type: 2}
+    m_Condition: {fileID: 11400000, guid: f788867cc03f56a499d3fc32626203f4, type: 2}
+  - m_Id: 11
+    m_WindowRect:
+      serializedVersion: 2
+      x: 729.99835
+      y: 375.00034
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 7
+    m_TargetNodeId: 2
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
+  m_Id: 12

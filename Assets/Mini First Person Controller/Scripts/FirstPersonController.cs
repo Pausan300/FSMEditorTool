@@ -72,11 +72,6 @@ public class FirstPersonController : MonoBehaviour, ITakeDamage
             Debug.DrawRay(Camera.main.transform.position, l_ShootDirection, Color.green);
             m_FireRateTimer-=Time.deltaTime;
 
-            if(Input.GetKeyDown(KeyCode.P)) 
-            {
-                m_PauseMenu.SetNormalPause();
-                m_PauseMenu.OpenMenu();
-            }
             if(Input.GetKeyDown(KeyCode.X))
                 TakeDamage(10.0f);
         }

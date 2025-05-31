@@ -36,6 +36,6 @@ MonoBehaviour:
   m_StateNodeWidth: 200
   m_StateNodeHeight: 190
   m_TransitionNodeWidth: 200
-  m_TransitionNodeHeight: 70
+  m_TransitionNodeHeight: 100
   m_NodeLabelHeight: 30
   m_EditorSkin: {fileID: 11400000, guid: d1183dcc410496a4ab3676b3dfec7952, type: 2}

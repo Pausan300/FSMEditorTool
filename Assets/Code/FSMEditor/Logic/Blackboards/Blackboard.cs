@@ -11,14 +11,12 @@ public class Blackboard : MonoBehaviour
 	public float m_Health;
 	public float m_Damage;
 	public float m_Speed;
-	public List<Transform> m_PatrolPoints=new List<Transform>();
 
     protected virtual void Awake()
     {
         SetValue<float>("Health", m_Health);
         SetValue<float>("Damage", m_Damage);
         SetValue<float>("Speed", m_Speed);
-        //SetValue<List<Transform>>("PatrolPoints", m_PatrolPoints);
     }
 
     public void SetValue<T>(string Key, T Value)

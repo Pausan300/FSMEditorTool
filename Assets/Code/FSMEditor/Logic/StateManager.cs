@@ -6,9 +6,11 @@ using UnityEngine;
 public class StateManager : MonoBehaviour
 {
 	public Graph m_AssignedGraph;
+	Blackboard m_Blackboard;
+
 	Graph m_GraphInstance;
 	StateNode m_CurrentState;
-	Blackboard m_Blackboard;
+	StateAction m_ActionInstance;
 
 	private void Awake()
 	{
@@ -19,13 +21,15 @@ public class StateManager : MonoBehaviour
 			m_GraphInstance=Instantiate(m_AssignedGraph);
 			m_CurrentState=m_GraphInstance.GetEntryNode();
 			m_CurrentState.m_IsCurrentlyPlaying=true;
+			m_ActionInstance=Instantiate(m_CurrentState.m_OnStateAction);
 		}
 	}
 	private void Update()
 	{
 		if(m_GraphInstance!=null) 
 		{
-			m_CurrentState.m_OnStateAction.Execute(this, m_Blackboard);
+			//m_CurrentState.m_OnStateAction.Execute(this, m_Blackboard);
+			m_ActionInstance.Execute(this, m_Blackboard);
 			m_CurrentState.CheckTransitions(this);
 		}
 	}
@@ -51,5 +55,8 @@ public class StateManager : MonoBehaviour
 		m_CurrentState.m_IsCurrentlyPlaying=true;
 		if(m_CurrentState.m_OnEnterAction!=null)
 			m_CurrentState.m_OnEnterAction.Execute(this, m_Blackboard);
+
+		ScriptableObject.Destroy(m_ActionInstance);
+		m_ActionInstance=Instantiate(m_CurrentState.m_OnStateAction);
 	}
 }

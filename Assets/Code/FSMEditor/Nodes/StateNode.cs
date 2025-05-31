@@ -6,6 +6,8 @@ using UnityEditor;
 [System.Serializable]
 public class StateNode : Node
 {
+	public string m_StateName;
+
 	public StateAction m_OnStateAction;
 	public StateAction m_OnEnterAction;
 	public StateAction m_OnExitAction;
@@ -22,10 +24,19 @@ public class StateNode : Node
 		for(int i=0; i<m_Transitions.Count; ++i)
 		{
 			TransitionNode l_Transition=States.m_AssignedGraph.GetTransitionNodeWithIndex(m_Transitions[i]);
-			if(l_Transition.m_TargetNodeId!=-1 && l_Transition.m_Condition.CheckCondition(States, States.GetBlackboard()))
+			if(l_Transition.m_TargetNodeId!=-1)
 			{
-				States.SetCurrentState(l_Transition.m_TargetNodeId);
-				return;
+				bool l_AllConditionsMet=true;
+				for(int conditionIndex=0; conditionIndex<l_Transition.m_Conditions.Count; ++conditionIndex) 
+				{
+					if(!l_Transition.m_Conditions[conditionIndex].CheckCondition(States, States.GetBlackboard()))
+						l_AllConditionsMet=false;
+				}
+				if(l_AllConditionsMet) 
+				{
+					States.SetCurrentState(l_Transition.m_TargetNodeId);
+					return;
+				}
 			}
 		}
 	}
@@ -44,7 +55,7 @@ public class StateNode : Node
 
 	public override void DrawWindow()
 	{
-		EditorGUILayout.LabelField(m_WindowTitle, FSMEditor.m_Settings.GetCenteredTextStyle());
+		EditorGUILayout.LabelField(m_StateName, FSMEditor.m_Settings.GetCenteredTextStyle());
 		GUILayout.Space(10.0f); 
 
 		if(m_OnEnterAction==null)

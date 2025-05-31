@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PauseMenuController : MonoBehaviour
 {
+    public GameObject m_Menu;
+
     public GameObject m_ResumeButton;
     public GameObject m_RestartButton;
     public GameObject m_ReturnToMainMenuButton;
@@ -16,7 +18,16 @@ public class PauseMenuController : MonoBehaviour
     void Start()
     {
         SetNormalPause();
-        gameObject.SetActive(false);
+        m_Menu.SetActive(false);
+    }
+
+    private void Update()
+    {
+        if(Input.GetKeyDown(KeyCode.P)) 
+        {
+            SetNormalPause();
+            OpenMenu();
+        }
     }
 
     public void SetNormalPause() 
@@ -53,13 +64,13 @@ public class PauseMenuController : MonoBehaviour
     public void OpenMenu() 
     {
         Time.timeScale=0.0f;
-        gameObject.SetActive(true);
+        m_Menu.SetActive(true);
         Cursor.lockState=CursorLockMode.None;
     }
     public void CloseMenu() 
     {
         Time.timeScale=1.0f;
-        gameObject.SetActive(false);
+        m_Menu.SetActive(false);
         Cursor.lockState=CursorLockMode.Locked;
     }
 
