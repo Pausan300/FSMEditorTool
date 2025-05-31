@@ -13,6 +13,8 @@ public class StateNode : Node
 	public List<int> m_Transitions=new List<int>();
 
 	public bool m_IsEntryNode;
+
+	public bool m_IsCurrentlyPlaying;
 	
 
 	public void CheckTransitions(StateManager States)

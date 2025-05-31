@@ -95,13 +95,13 @@ GameObject:
   - component: {fileID: 7475107087584285909}
   - component: {fileID: 3036055310829007797}
   - component: {fileID: 6812504629693640675}
-  - component: {fileID: 226514251599700800}
   - component: {fileID: 1793332505329320846}
   - component: {fileID: 3895594141674927019}
   - component: {fileID: 7697061659497170603}
+  - component: {fileID: 4623831475524686359}
   m_Layer: 6
   m_Name: TurretEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -193,33 +193,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!54 &226514251599700800
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3332748755054531555}
-  serializedVersion: 4
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 10
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 94
-  m_CollisionDetection: 0
 --- !u!114 &1793332505329320846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -251,6 +224,7 @@ MonoBehaviour:
   m_PatrolPoints: []
   m_Projectile: {fileID: 8917656255276144067, guid: 4c434e28d3fc12c469e79800b73fc9fb, type: 3}
   m_TurretHead: {fileID: 2634313703321768548}
+  m_ProjectileSpeed: 8
 --- !u!114 &7697061659497170603
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,7 +238,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssignedGraph: {fileID: 11400000, guid: aaa877f4e35103141b95cd4588cf565c, type: 2}
-  m_Transform: {fileID: 0}
+--- !u!114 &4623831475524686359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3332748755054531555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bd78187bc083dce408d11c38383480ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_ProtectedDoor: {fileID: 0}
 --- !u!1 &3461264019966843489
 GameObject:
   m_ObjectHideFlags: 0

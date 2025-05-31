@@ -31,10 +31,9 @@ public class TurretProjectile : MonoBehaviour
         if(other.CompareTag("Player")) 
         {
             if(other.transform.TryGetComponent(out ITakeDamage Player))
-            {
                 Player.TakeDamage(m_Damage);
-                Destroy(gameObject);
-            }
         }
+        if(!other.CompareTag("Enemy"))
+            Destroy(gameObject);
     }
 }

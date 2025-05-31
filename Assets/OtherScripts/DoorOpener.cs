@@ -9,6 +9,8 @@ public class DoorOpener : MonoBehaviour
     public AnimationClip m_OpenDoorAnim;
     public AnimationClip m_CloseDoorAnim;
 
+    public List<GameObject> m_EnemiesRequiredToOpen=new List<GameObject>();
+
     void Start()
     {
         m_Animation=GetComponent<Animation>();
@@ -17,10 +19,12 @@ public class DoorOpener : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        m_Animation.Play(m_OpenDoorAnim.name);
+        if(m_EnemiesRequiredToOpen.Count<=0)
+            m_Animation.Play(m_OpenDoorAnim.name);
     }
     private void OnTriggerExit(Collider other)
     {
-        m_Animation.Play(m_CloseDoorAnim.name);
+        if(m_EnemiesRequiredToOpen.Count<=0)
+            m_Animation.Play(m_CloseDoorAnim.name);
     }
 }

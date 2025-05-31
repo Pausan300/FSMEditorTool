@@ -9,7 +9,6 @@ public class Graph : ScriptableObject
 
 	public List<StateNode> m_Windows=new List<StateNode>();
 	public List<TransitionNode> m_TransitionNodes=new List<TransitionNode>();
-	public List<PointerNode> m_PointerNodes=new List<PointerNode>();
 
 	[SerializeField]
 	public int m_Id;
@@ -26,7 +25,6 @@ public class Graph : ScriptableObject
 			if(m_TransitionNodes[i].m_Id==Index)
 				return m_TransitionNodes[i];
 		}
-
 		return null;
 	}
 	public StateNode GetStateNodeWithIndex(int Index) 
@@ -59,30 +57,6 @@ public class Graph : ScriptableObject
 		if(l_Node!=null)
 			m_TransitionNodes.Remove(l_Node);
 	}
-	public bool DoesNodeAlreadyExist(StateNode Node)
-	{
-		for(int i=0; i<m_Windows.Count; ++i)
-		{
-			if(m_Windows[i].m_Id==Node.m_Id)
-				continue;
-			if(m_Windows[i].m_OnStateAction==Node.m_OnStateAction && !m_Windows[i].m_AlreadyExists)
-				return true;
-		}
-		return false;
-	}
-	//public bool DoesTransitionAlreadyExist(TransitionNode Node)
-	//{
-	//	StateNode l_EnterNode=GetStateNodeWithIndex(Node.m_EnterNode);
-	//	if(l_EnterNode==null)
-	//		return false;
-	//	for(int i=0; i<l_EnterNode.m_Transitions.Count; ++i)
-	//	{
-	//		Transition l_Transition=l_EnterNode.m_Transitions[i]; 
-	//		if(l_Transition.m_Condition==Node.m_PreviousCondition && Node.m_TransitionId!=l_Transition.m_Id)
-	//			return true;
-	//	}
-	//	return false;
-	//}
 	public void SetEntryNode(int Id) 
 	{
 		if(GetStateNodeWithIndex(m_EntryNodeId)!=null)

@@ -41,6 +41,10 @@ public class EditorSettings : ScriptableObject
 	{
 		return m_EditorSkin.GetStyle("TransitionNodeLabel");
 	}
+	public GUIStyle GetPlayingStateWindowStyle() 
+	{
+		return m_EditorSkin.GetStyle("PlayingStateWindow");
+	}
 	public GUIStyle GetRedTextStyle() 
 	{
 		return m_EditorSkin.GetStyle("Label");

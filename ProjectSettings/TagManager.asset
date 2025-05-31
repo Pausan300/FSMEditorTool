@@ -13,6 +13,7 @@ TagManager:
   - AirWall
   - Trigger
   - Sheep
+  - Victory
   layers:
   - Default
   - TransparentFX
@@ -22,8 +23,8 @@ TagManager:
   - UI
   - Enemy
   - Platform
-  - 
-  - 
+  - Trigger
+  - Projectile
   - 
   - 
   - 

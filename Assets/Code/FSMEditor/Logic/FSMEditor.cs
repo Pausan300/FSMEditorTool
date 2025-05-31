@@ -15,6 +15,7 @@ public class FSMEditor : EditorWindow
 	Vector2 m_ScrollStartPos;
 	bool m_ClickedOnWindow;
 	bool m_MakeTransition;
+	bool m_ShowingSelectedObjectGraph;
 	Node m_SelectedNode;
 	int m_TransitionOrigin;
 
@@ -32,21 +33,49 @@ public class FSMEditor : EditorWindow
 		m_EditorStyle=m_Settings.m_EditorSkin.GetStyle("window");
 	}
 
-	private void OnGUI()
+    private void OnInspectorUpdate()
+    {
+        Repaint();
+    }
+
+    private void OnGUI()
 	{
 		Event l_Event=Event.current;
 		m_MousePos=l_Event.mousePosition;
 		UserInput(l_Event);
 
+		if(Application.isPlaying && Selection.activeGameObject!=null) 
+		{
+			StateManager l_SelectedObject=Selection.activeGameObject.GetComponent<StateManager>();
+			if(l_SelectedObject!=null && l_SelectedObject.GetGraph()!=null) 
+			{
+				m_Settings.m_CurrentGraph=l_SelectedObject.GetGraph();
+				m_ShowingSelectedObjectGraph=true;
+			}
+			else 
+			{
+				if(m_ShowingSelectedObjectGraph)
+					m_Settings.m_CurrentGraph=null;
+				m_ShowingSelectedObjectGraph=false;
+			}
+		}
+		else 
+		{
+			if(m_Settings.m_CurrentGraph==null && m_Settings.m_CurrentGraph is not null)
+				m_Settings.m_CurrentGraph=null;
+			m_ShowingSelectedObjectGraph=false;
+		}
+
+
 		DrawNodes();
-		DrawGraphConfig();
-		if(m_ClickedOnWindow)
-			DrawNodeInspector();
+		if(!m_ShowingSelectedObjectGraph) 
+		{
+			DrawGraphConfig();
+			if(m_ClickedOnWindow && m_Settings.m_CurrentGraph!=null)
+				DrawNodeInspector();
+		}
 
 		if(l_Event.type==EventType.MouseDrag && m_Settings.m_CurrentGraph!=null)
-			Repaint();
-
-		if(GUI.changed)
 			Repaint();
 
 		if(m_MakeTransition)
@@ -76,7 +105,10 @@ public class FSMEditor : EditorWindow
 			{
 				StateNode l_Node=m_Settings.m_CurrentGraph.m_Windows[i];
 				Rect l_WindowRect=new Rect(l_Node.m_WindowRect.x, l_Node.m_WindowRect.y, m_Settings.m_StateNodeWidth, m_Settings.m_StateNodeHeight);
-				l_Node.m_WindowRect=GUI.Window(l_WindowIndex, l_WindowRect, id => DrawStateNodeWindow(id, l_Node), "", l_NodeWindowStyle);
+				if(l_Node.m_IsCurrentlyPlaying)
+					l_Node.m_WindowRect=GUI.Window(l_WindowIndex, l_WindowRect, id => DrawStateNodeWindow(id, l_Node), "", m_Settings.GetPlayingStateWindowStyle());
+				else
+					l_Node.m_WindowRect=GUI.Window(l_WindowIndex, l_WindowRect, id => DrawStateNodeWindow(id, l_Node), "", l_NodeWindowStyle);
 				m_Settings.m_CurrentGraph.m_Windows[i].DrawLabel();
 				l_WindowIndex++;
 			}
@@ -90,14 +122,6 @@ public class FSMEditor : EditorWindow
 				l_Node.DrawLine();
 				l_WindowIndex++;
 			}
-
-			for(int i=0; i<m_Settings.m_CurrentGraph.m_PointerNodes.Count; ++i)
-			{
-				PointerNode l_Node=m_Settings.m_CurrentGraph.m_PointerNodes[i];
-				l_Node.m_WindowRect=GUI.Window(l_WindowIndex, l_Node.m_WindowRect, id => DrawPointerNodeWindow(id, l_Node), "");
-				l_Node.DrawLabel();
-				l_WindowIndex++;
-			}
 		} 
 
 		EndWindows();
@@ -109,11 +133,6 @@ public class FSMEditor : EditorWindow
 		GUI.DragWindow();
 	}
 	void DrawTransitionNodeWindow(int Id, TransitionNode Node) 
-	{
-		Node.DrawWindow();
-		GUI.DragWindow();
-	}
-	void DrawPointerNodeWindow(int Id, PointerNode Node) 
 	{
 		Node.DrawWindow();
 		GUI.DragWindow();
@@ -324,14 +343,10 @@ public class FSMEditor : EditorWindow
 		m_ClickedOnWindow=false;
 		TrySelectNode();
 
-		if(m_ClickedOnWindow && (m_SelectedNode is StateNode || m_SelectedNode is PointerNode) && m_SelectedNode.m_Id!=m_TransitionOrigin)
+		if(m_ClickedOnWindow && m_SelectedNode is StateNode && m_SelectedNode.m_Id!=m_TransitionOrigin)
 		{
 			TransitionNode l_TransitionNode=m_Settings.m_CurrentGraph.GetTransitionNodeWithIndex(m_TransitionOrigin);
 			l_TransitionNode.m_TargetNodeId=m_SelectedNode.m_Id;
-
-			//StateNode l_EnterNode=m_Settings.m_CurrentGraph.GetStateNodeWithIndex(l_TransitionNode.m_EnterNode);
-			//Transition l_Transition=l_EnterNode.GetTransition(l_TransitionNode.m_TransitionId);
-			//l_Transition.m_TargetState=m_SelectedNode.m_Id;
 		}
 	}
 	void MoveWindows(Event Event)
@@ -351,11 +366,6 @@ public class FSMEditor : EditorWindow
 			m_Settings.m_CurrentGraph.m_TransitionNodes[i].m_WindowRect.x+=l_Distance.x;
 			m_Settings.m_CurrentGraph.m_TransitionNodes[i].m_WindowRect.y+=l_Distance.y;
 		}
-		for(int i=0; i<m_Settings.m_CurrentGraph.m_PointerNodes.Count; ++i)
-		{
-			m_Settings.m_CurrentGraph.m_PointerNodes[i].m_WindowRect.x+=l_Distance.x;
-			m_Settings.m_CurrentGraph.m_PointerNodes[i].m_WindowRect.y+=l_Distance.y;
-		}
 	}
 	void RightClick(Event Event)
 	{
@@ -373,9 +383,7 @@ public class FSMEditor : EditorWindow
 		GenericMenu l_Menu=new GenericMenu();
 		if(m_Settings.m_CurrentGraph!=null)
 		{
-			l_Menu.AddItem(new GUIContent("Add State"), false, AddStateNode); 
-			l_Menu.AddSeparator("");
-			l_Menu.AddItem(new GUIContent("Add Pointer"), false, AddPointerNode); 
+			l_Menu.AddItem(new GUIContent("Add State"), false, AddStateNode);
 		}
 		l_Menu.ShowAsContext();
 		Event.Use();
@@ -395,11 +403,6 @@ public class FSMEditor : EditorWindow
 				}
 				l_Menu.AddSeparator("");
 			} 
-			l_Menu.AddItem(new GUIContent("Delete"), false, RemoveNode);
-		} 
-		else if(m_SelectedNode is PointerNode)
-		{
-			l_Menu.AddSeparator("");
 			l_Menu.AddItem(new GUIContent("Delete"), false, RemoveNode);
 		} 
 		else if(m_SelectedNode is TransitionNode)
@@ -431,27 +434,14 @@ public class FSMEditor : EditorWindow
 	{
 		TransitionNode l_TransitionNode=AddTransitionNodeOnGraph("Condition", m_MousePos);
 		l_TransitionNode.m_EnterNodeId=m_SelectedNode.m_Id;
-		//l_TransitionNode.m_TargetNode=-1;
 
-		if(m_SelectedNode is StateNode _StateNode) 
-		{
-			//Transition l_Transition=_StateNode.AddTransition();
-			//l_TransitionNode.m_TransitionId=_StateNode.m_Transitions.Count-1;
-			//l_Transition.m_Id=_StateNode.m_Transitions.Count-1;
-
-			Debug.Log(l_TransitionNode.m_Id);
+		if(m_SelectedNode is StateNode _StateNode)
 			_StateNode.AddTransition(l_TransitionNode.m_Id);
-		}
 		m_Settings.Save();
 	}
 	void AddStateNode() 
 	{
 		StateNode l_StateNode=AddStateNodeOnGraph("State", m_MousePos);
-		m_Settings.Save();
-	}
-	void AddPointerNode() 
-	{
-		AddPointerNodeOnGraph("Pointer", m_MousePos); 
 		m_Settings.Save();
 	}
 	StateNode AddStateNodeOnGraph(string Title, Vector3 Pos)
@@ -481,17 +471,6 @@ public class FSMEditor : EditorWindow
 		l_Node.m_Id=m_Settings.m_CurrentGraph.m_Id;
 		m_Settings.m_CurrentGraph.m_Id++;
 		m_Settings.m_CurrentGraph.m_TransitionNodes.Add(l_Node); 
-		return l_Node;
-	}
-	PointerNode AddPointerNodeOnGraph(string Title, Vector3 Pos)
-	{
-		PointerNode l_Node=new PointerNode();
-		l_Node.m_WindowTitle=Title;
-		l_Node.m_WindowRect.x=Pos.x;
-		l_Node.m_WindowRect.y=Pos.y;
-		l_Node.m_Id=m_Settings.m_CurrentGraph.m_Id;
-		m_Settings.m_CurrentGraph.m_Id++;
-		m_Settings.m_CurrentGraph.m_PointerNodes.Add(l_Node); 
 		return l_Node;
 	}
 

@@ -16,8 +16,8 @@ MonoBehaviour:
   - m_Id: 0
     m_WindowRect:
       serializedVersion: 2
-      x: 389
-      y: 308
+      x: 327.99966
+      y: 273.19983
       width: 200
       height: 190
     m_WindowTitle: State
@@ -28,11 +28,12 @@ MonoBehaviour:
     m_OnExitAction: {fileID: 0}
     m_Transitions: 01000000
     m_IsEntryNode: 1
+    m_IsCurrentlyPlaying: 0
   - m_Id: 2
     m_WindowRect:
       serializedVersion: 2
-      x: 947
-      y: 294
+      x: 913.0018
+      y: 274.19983
       width: 200
       height: 190
     m_WindowTitle: State
@@ -43,12 +44,13 @@ MonoBehaviour:
     m_OnExitAction: {fileID: 0}
     m_Transitions: 03000000
     m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
   m_TransitionNodes:
   - m_Id: 1
     m_WindowRect:
       serializedVersion: 2
-      x: 659
-      y: 166
+      x: 614.002
+      y: 259.2001
       width: 200
       height: 70
     m_WindowTitle: Condition
@@ -60,8 +62,8 @@ MonoBehaviour:
   - m_Id: 3
     m_WindowRect:
       serializedVersion: 2
-      x: 679
-      y: 583
+      x: 614.0021
+      y: 406.20135
       width: 200
       height: 70
     m_WindowTitle: Condition
@@ -70,5 +72,4 @@ MonoBehaviour:
     m_EnterNodeId: 2
     m_TargetNodeId: 0
     m_Condition: {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
-  m_PointerNodes: []
-  m_Id: 4
+  m_Id: 5
