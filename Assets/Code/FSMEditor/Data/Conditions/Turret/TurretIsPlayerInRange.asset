@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f034648b797f87c499eb607b1cf48e12, type: 3}
   m_Name: TurretIsPlayerInRange
   m_EditorClassIdentifier: 
-  m_DetectDistance: 20
+  m_MaxRange: 25
+  m_OutOfRange: 0

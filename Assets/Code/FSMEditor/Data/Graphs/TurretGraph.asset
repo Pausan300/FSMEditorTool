@@ -60,7 +60,7 @@ MonoBehaviour:
   - m_Id: 3
     m_WindowRect:
       serializedVersion: 2
-      x: 557.0042
+      x: 556.0042
       y: 420.0015
       width: 200
       height: 100
@@ -69,5 +69,5 @@ MonoBehaviour:
     m_TargetNodeId: 0
     m_ExtraWindowHeight: 0
     m_Conditions:
-    - {fileID: 11400000, guid: 2111c3d07be6ead4c94b7562b9c74bc2, type: 2}
+    - {fileID: 11400000, guid: f698c755feafed74abf02793dc454329, type: 2}
   m_Id: 5

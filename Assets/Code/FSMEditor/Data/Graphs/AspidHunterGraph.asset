@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1367e334920a46459cb02b0e2275ac8, type: 3}
+  m_Name: AspidHunterGraph
+  m_EditorClassIdentifier: 
+  m_Windows:
+  - m_Id: 0
+    m_WindowRect:
+      serializedVersion: 2
+      x: 334
+      y: 293
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: FLY AROUND POINT
+    m_OnStateAction: {fileID: 11400000, guid: 087027f506a8d76458192ae03e57885c, type: 2}
+    m_OnEnterAction: {fileID: 11400000, guid: 1e9b149393c039a4e8402d79111a2f0a, type: 2}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 01000000
+    m_IsEntryNode: 1
+    m_IsCurrentlyPlaying: 0
+  - m_Id: 2
+    m_WindowRect:
+      serializedVersion: 2
+      x: 956
+      y: 284
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: SHOOT
+    m_OnStateAction: {fileID: 11400000, guid: 27b0b5cef6bccbd40826ad38d50389cb, type: 2}
+    m_OnEnterAction: {fileID: 11400000, guid: 20cc39d1d9e5f2e4a99ff75a86212050, type: 2}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 03000000
+    m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
+  m_TransitionNodes:
+  - m_Id: 1
+    m_WindowRect:
+      serializedVersion: 2
+      x: 635
+      y: 276
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 0
+    m_TargetNodeId: 2
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 7d99344c14e757a4381a1a2e4c257b5f, type: 2}
+  - m_Id: 3
+    m_WindowRect:
+      serializedVersion: 2
+      x: 644
+      y: 453
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 2
+    m_TargetNodeId: 0
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 4da8175f808575747823194371202c86, type: 2}
+  m_Id: 4

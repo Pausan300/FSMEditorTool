@@ -40,13 +40,10 @@ public class TransitionNode : Node
         }
 
 		m_ConditionsList=new ReorderableList(m_Conditions, typeof(Condition), false, true, true, true);
-
-        // Cabecera de la lista
         m_ConditionsList.drawHeaderCallback=(Rect rect) =>
         {
             EditorGUI.LabelField(rect, "Conditions");
         };
-
         m_ConditionsList.drawElementCallback=(Rect rect, int index, bool isActive, bool isFocused) =>
         {
             m_Conditions[index]=(Condition)EditorGUI.ObjectField(new Rect(rect.x, rect.y, rect.width, EditorGUIUtility.singleLineHeight), m_Conditions[index], typeof(Condition), true);
@@ -64,8 +61,6 @@ public class TransitionNode : Node
             m_Conditions.RemoveAt(list.index);
         };
 		m_ConditionsList.DoLayoutList();
-
-		//m_Condition=(Condition)EditorGUILayout.ObjectField(m_Condition, typeof(Condition), false);
 	}
 	public void DrawLine()
 	{
@@ -94,19 +89,8 @@ public class TransitionNode : Node
 		l_NextRect.height+=FSMEditor.m_Settings.m_NodeLabelHeight;
 
 		l_TargetColor=Color.green;
-		if(!l_TargetNode.m_Assigned /*|| m_Conditions.Count==0*/)
+		if(!l_TargetNode.m_Assigned)
 			l_TargetColor=Color.red;
-		//if(m_Conditions.Count>0) 
-		//{
-		//	bool l_AllConditionsNull=true;
-		//	for(int i=0; i<m_Conditions.Count; ++i) 
-		//	{
-		//		if(m_Conditions[i]!=null)
-		//			l_AllConditionsNull=false;
-		//	}
-		//	if(l_AllConditionsNull)
-		//		l_TargetColor=Color.red;
-		//}
 
 		FSMEditor.DrawNodeLine(l_OwnRect, l_NextRect, l_TargetColor);
 	}

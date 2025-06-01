@@ -95,10 +95,9 @@ GameObject:
   - component: {fileID: 7475107087584285909}
   - component: {fileID: 3036055310829007797}
   - component: {fileID: 6812504629693640675}
-  - component: {fileID: 1793332505329320846}
+  - component: {fileID: 4623831475524686359}
   - component: {fileID: 3895594141674927019}
   - component: {fileID: 7697061659497170603}
-  - component: {fileID: 4623831475524686359}
   m_Layer: 6
   m_Name: TurretEnemy
   m_TagString: Enemy
@@ -193,7 +192,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 1, z: 0}
---- !u!114 &1793332505329320846
+--- !u!114 &4623831475524686359
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -202,10 +201,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3332748755054531555}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a4a4820f8c9e54086e7de7aa79262a, type: 3}
+  m_Script: {fileID: 11500000, guid: bd78187bc083dce408d11c38383480ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_MaxHealth: 50
+  m_ProtectedDoor: {fileID: 0}
 --- !u!114 &3895594141674927019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,10 +217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91d2b1cc42627714fa24c9283149743c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Health: 50
   m_Damage: 25
   m_Speed: 4
-  m_PatrolPoints: []
+  m_MaxHealth: 50
   m_Projectile: {fileID: 8917656255276144067, guid: 4c434e28d3fc12c469e79800b73fc9fb, type: 3}
   m_TurretHead: {fileID: 2634313703321768548}
   m_ProjectileSpeed: 8
@@ -238,19 +236,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AssignedGraph: {fileID: 11400000, guid: aaa877f4e35103141b95cd4588cf565c, type: 2}
---- !u!114 &4623831475524686359
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3332748755054531555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd78187bc083dce408d11c38383480ed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ProtectedDoor: {fileID: 0}
 --- !u!1 &3461264019966843489
 GameObject:
   m_ObjectHideFlags: 0

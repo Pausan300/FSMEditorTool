@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53d16976a68b86640bd49e4cb9c20695, type: 3}
   m_Name: EditorSettings
   m_EditorClassIdentifier: 
-  m_CurrentGraph: {fileID: 11400000, guid: aaa877f4e35103141b95cd4588cf565c, type: 2}
+  m_CurrentGraph: {fileID: 11400000, guid: 4deb465e3b1d1b142be841d2767ae90f, type: 2}
   m_MinEditorSize: {x: 640, y: 480}
   m_MaxEditorSize: {x: 1920, y: 1080}
   m_EditorWindowRect:

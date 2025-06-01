@@ -16,8 +16,8 @@ MonoBehaviour:
   - m_Id: 0
     m_WindowRect:
       serializedVersion: 2
-      x: 411.601
-      y: 127.199135
+      x: 331.20038
+      y: 113.99916
       width: 200
       height: 190
     m_Assigned: 1
@@ -31,8 +31,8 @@ MonoBehaviour:
   - m_Id: 2
     m_WindowRect:
       serializedVersion: 2
-      x: 1002.5971
-      y: 104.19913
+      x: 922.1993
+      y: 90.999146
       width: 200
       height: 190
     m_Assigned: 1
@@ -46,8 +46,8 @@ MonoBehaviour:
   - m_Id: 4
     m_WindowRect:
       serializedVersion: 2
-      x: 977.5971
-      y: 647.20245
+      x: 897.1996
+      y: 634.00214
       width: 200
       height: 190
     m_Assigned: 1
@@ -61,8 +61,8 @@ MonoBehaviour:
   - m_Id: 7
     m_WindowRect:
       serializedVersion: 2
-      x: 408.00067
-      y: 608.9988
+      x: 327.60004
+      y: 595.79846
       width: 200
       height: 190
     m_Assigned: 1
@@ -77,8 +77,8 @@ MonoBehaviour:
   - m_Id: 1
     m_WindowRect:
       serializedVersion: 2
-      x: 689.5971
-      y: 128.19934
+      x: 609.1996
+      y: 114.99937
       width: 200
       height: 100
     m_Assigned: 1
@@ -87,12 +87,11 @@ MonoBehaviour:
     m_ExtraWindowHeight: 0
     m_Conditions:
     - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
-    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
   - m_Id: 3
     m_WindowRect:
       serializedVersion: 2
-      x: 1252.596
-      y: 428.20117
+      x: 1172.1985
+      y: 415.00104
       width: 200
       height: 100
     m_Assigned: 1
@@ -101,12 +100,11 @@ MonoBehaviour:
     m_ExtraWindowHeight: 0
     m_Conditions:
     - {fileID: 11400000, guid: 00028f26fdc7bf64da0169b93573bfc1, type: 2}
-    m_Condition: {fileID: 11400000, guid: 00028f26fdc7bf64da0169b93573bfc1, type: 2}
   - m_Id: 6
     m_WindowRect:
       serializedVersion: 2
-      x: 986.79706
-      y: 424.60016
+      x: 906.39954
+      y: 411.40002
       width: 200
       height: 122.5
     m_Assigned: 1
@@ -116,12 +114,11 @@ MonoBehaviour:
     m_Conditions:
     - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
     - {fileID: 11400000, guid: bee60a090f8ce74468733578712edf54, type: 2}
-    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
   - m_Id: 8
     m_WindowRect:
       serializedVersion: 2
-      x: 683.99835
-      y: 664.9988
+      x: 603.6008
+      y: 651.79846
       width: 200
       height: 122.5
     m_Assigned: 1
@@ -131,12 +128,11 @@ MonoBehaviour:
     m_Conditions:
     - {fileID: 11400000, guid: 6a3231fb98ed15f4e8e165a09ed207d5, type: 2}
     - {fileID: 11400000, guid: bee60a090f8ce74468733578712edf54, type: 2}
-    m_Condition: {fileID: 11400000, guid: 6a3231fb98ed15f4e8e165a09ed207d5, type: 2}
   - m_Id: 10
     m_WindowRect:
       serializedVersion: 2
-      x: 412.00067
-      y: 407.00034
+      x: 331.60004
+      y: 393.8002
       width: 200
       height: 100
     m_Assigned: 1
@@ -145,12 +141,11 @@ MonoBehaviour:
     m_ExtraWindowHeight: 0
     m_Conditions:
     - {fileID: 11400000, guid: f788867cc03f56a499d3fc32626203f4, type: 2}
-    m_Condition: {fileID: 11400000, guid: f788867cc03f56a499d3fc32626203f4, type: 2}
   - m_Id: 11
     m_WindowRect:
       serializedVersion: 2
-      x: 729.99835
-      y: 375.00034
+      x: 649.6008
+      y: 361.8002
       width: 200
       height: 100
     m_Assigned: 1
@@ -159,5 +154,4 @@ MonoBehaviour:
     m_ExtraWindowHeight: 0
     m_Conditions:
     - {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
-    m_Condition: {fileID: 11400000, guid: 8fc09d9d784aa5341afb8da3708c6321, type: 2}
   m_Id: 12

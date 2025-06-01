@@ -17,6 +17,5 @@ public class FarmerBlackboard : Blackboard
         SetValue<GameObject>("TargetSheep", null);
         SetValue<float>("MaxShearTime", m_MaxShearTime);
         SetValue<float>("CurrentShearTime", 0.0f);
-        SetValue<Animation>("Animation", GetComponent<Animation>());
     }
 }

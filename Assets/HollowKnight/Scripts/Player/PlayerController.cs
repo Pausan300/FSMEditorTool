@@ -6,13 +6,15 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, ITakeDamage
 {
     [Header("UI")]
-    public Slider m_HealthBar;
+    public List<Image> m_HealthImages;
+    public Sprite m_HealthEmptySprite;
     public PauseMenuController m_PauseMenu;
 
     public int health;
+    public int m_Damage;
     public float moveSpeed;
     public float jumpSpeed;
     public int jumpLeft;
@@ -29,6 +31,7 @@ public class PlayerController : MonoBehaviour
     public float hurtRecoverTime;
     public Vector2 deathRecoil;
     public float deathDelay;
+    public bool m_Invulnerable;
 
     public Vector2 attackUpRecoil;
     public Vector2 attackForwardRecoil;
@@ -112,18 +115,20 @@ public class PlayerController : MonoBehaviour
 
     public void hurt(int damage)
     {
-        gameObject.layer = LayerMask.NameToLayer("PlayerInvulnerable");
+        health -= damage;
 
-        health = Math.Max(health - damage, 0);
+        m_HealthImages[health].sprite=m_HealthEmptySprite;
 
         if (health == 0)
         {
-            die();
+            m_PauseMenu.SetGameOver();
+            m_PauseMenu.OpenMenu();
             return;
         }
 
         // enter invulnerable state
         _animator.SetTrigger("IsHurt");
+        m_Invulnerable=true;
 
         // stop player movement
         Vector2 newVelocity;
@@ -151,7 +156,7 @@ public class PlayerController : MonoBehaviour
         _isInputEnabled = true;
         yield return new WaitForSeconds(hurtRecoverTime);
         _spriteRenderer.color = Color.white;
-        gameObject.layer = LayerMask.NameToLayer("Player");
+        m_Invulnerable=false;
     }
 
     private void OnCollisionExit2D(Collision2D collision)
@@ -511,7 +516,7 @@ public class PlayerController : MonoBehaviour
             {
                 ITakeDamage enemyController = obj.GetComponent<ITakeDamage>();
                 if (enemyController != null)
-                    enemyController.TakeDamage(10.0f);
+                    enemyController.TakeDamage(m_Damage);
             }
             else if (layerName == "Projectile")
             {
@@ -532,5 +537,11 @@ public class PlayerController : MonoBehaviour
         _isAttackable = false;
         yield return new WaitForSeconds(attackInterval);
         _isAttackable = true;
+    }
+
+    public void TakeDamage(float Damage)
+    {
+        if(!m_Invulnerable)
+            hurt((int)Damage);
     }
 }

@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1367e334920a46459cb02b0e2275ac8, type: 3}
+  m_Name: WanderingHuskGraph
+  m_EditorClassIdentifier: 
+  m_Windows:
+  - m_Id: 0
+    m_WindowRect:
+      serializedVersion: 2
+      x: 352
+      y: 275
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: PATROL
+    m_OnStateAction: {fileID: 11400000, guid: 3c439eeb26bd68549aedbf4639d7243c, type: 2}
+    m_OnEnterAction: {fileID: 11400000, guid: 57730a1443b926341a01563ffbb98a0e, type: 2}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 01000000
+    m_IsEntryNode: 1
+    m_IsCurrentlyPlaying: 0
+  - m_Id: 2
+    m_WindowRect:
+      serializedVersion: 2
+      x: 937
+      y: 274
+      width: 200
+      height: 190
+    m_Assigned: 1
+    m_StateName: CHASE
+    m_OnStateAction: {fileID: 11400000, guid: 95981a9025afd364083f22c061939798, type: 2}
+    m_OnEnterAction: {fileID: 11400000, guid: 5a0c0f503c8574f458bafe20970fdc30, type: 2}
+    m_OnExitAction: {fileID: 0}
+    m_Transitions: 03000000
+    m_IsEntryNode: 0
+    m_IsCurrentlyPlaying: 0
+  m_TransitionNodes:
+  - m_Id: 1
+    m_WindowRect:
+      serializedVersion: 2
+      x: 641
+      y: 227
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 0
+    m_TargetNodeId: 2
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: 0dce55ed7299207479cf462bd1d97e0c, type: 2}
+  - m_Id: 3
+    m_WindowRect:
+      serializedVersion: 2
+      x: 641
+      y: 414
+      width: 200
+      height: 100
+    m_Assigned: 1
+    m_EnterNodeId: 2
+    m_TargetNodeId: 0
+    m_ExtraWindowHeight: 0
+    m_Conditions:
+    - {fileID: 11400000, guid: c109ab90a2758594e82433401695ce16, type: 2}
+  m_Id: 4

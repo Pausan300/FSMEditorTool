@@ -6,8 +6,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Conditions/IsHungry")]
 public class IsHungry : Condition
 {
-	public float m_MaxDistance;
-
 	public override bool CheckCondition(StateManager State, Blackboard _Blackboard)
 	{
 		return _Blackboard.GetValue<float>("Hunger")>=_Blackboard.GetValue<float>("MaxHunger");

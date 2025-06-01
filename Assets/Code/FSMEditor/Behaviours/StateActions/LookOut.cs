@@ -6,7 +6,6 @@ using UnityEngine;
 public class LookOut : StateAction
 {
 	public float m_RotationSpeed;
-	public float m_RotationSeed;
 
 	public override void Execute(StateManager States, Blackboard _Blackboard)
 	{

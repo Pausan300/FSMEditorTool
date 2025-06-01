@@ -8,13 +8,11 @@ public class Blackboard : MonoBehaviour
 	private Dictionary<string, object> m_AgentInfo=new Dictionary<string, object>();
 
 	[Header("Properties")]
-	public float m_Health;
 	public float m_Damage;
 	public float m_Speed;
 
     protected virtual void Awake()
     {
-        SetValue<float>("Health", m_Health);
         SetValue<float>("Damage", m_Damage);
         SetValue<float>("Speed", m_Speed);
     }

@@ -5,20 +5,23 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Actions/PatrolPoints")]
 public class PatrolPoints : StateAction
 {
-	public override void Execute(StateManager States, Blackboard Blackboard)
+	public override void Execute(StateManager States, Blackboard _Blackboard)
 	{
-		//Vector3 l_Direction=Blackboard.m_NextPatrolPoint.position-States.m_Transform.position;
-		//States.m_Transform.position+=l_Direction.normalized*Blackboard.m_Speed;
-		//States.m_Transform.forward=l_Direction;
-		//float l_Distance=l_Direction.magnitude;
-		//if(l_Distance<0.5f)
-		//{
-		//	int l_Index=Blackboard.m_PatrolPoints.IndexOf(Blackboard.m_NextPatrolPoint);
-		//	l_Index++;
-		//	if(l_Index>=Blackboard.m_PatrolPoints.Count)
-		//		l_Index=0;
-		//	Blackboard.m_NextPatrolPoint=Blackboard.m_PatrolPoints[l_Index];
-		//}
-		//Blackboard.m_CurrentHunger-=Time.deltaTime*Blackboard.m_HungerLossPerSecond;
+		int l_Index=_Blackboard.GetValue<int>("CurrentPatrolPoint");
+		List<Transform> l_PointsList=_Blackboard.GetValue<List<Transform>>("PatrolPoints");
+		Vector3 l_NextPoint=l_PointsList[l_Index].position;
+
+		Vector3 l_Direction=l_NextPoint-_Blackboard.transform.position;
+		_Blackboard.transform.position+=l_Direction.normalized*_Blackboard.GetValue<float>("Speed")*Time.deltaTime;
+		_Blackboard.transform.forward=l_Direction;
+		float l_Distance=l_Direction.magnitude;
+
+		if(l_Distance<0.25f)
+		{
+			l_Index++;
+			if(l_Index>=l_PointsList.Count)
+				l_Index=0;
+			_Blackboard.SetValue<int>("CurrentPatrolPoint", l_Index);
+		}
 	}
 }
